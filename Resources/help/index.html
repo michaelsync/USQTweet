@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+</head>
+<body>
+    <h1>
+        USQTweet - Simply Twitter Client</h1>
+    <p>
+        USQTweet is a simply twitter client that is created 
+        as USQ Mobile Module final assignment. The main requirment for this assingment 
+        is to show at least four features of Android mobile platform so this application 
+        has very limited features compared to other twitter clients on the market.
+    </p>
+    <p>
+        <strong>User Features </strong>
+    </p>
+    <ul>
+        <li>Login with existing twitter account </li>
+        <li>View the latest tweets on mobile phone </li>
+    </ul>
+    <p>
+        <strong>Technical Details</strong></p>
+    <ul>
+        <li>oAuth 1.0</li>
+        <li>Network I/O </li>
+        <li>Dual orientation GUI </li>
+        <li>File API: Persistent storage using File ( &quot;Isolated storage&quot; style)</li>
+        <li>Web View for Twitter authentication process (oAuth) and help file viewer </li>
+        <li>Rail-style naming coventing. </li>
+        <li>Comment style : YUI Doc <a href="http://developer.yahoo.com/yui/yuidoc/">
+            http://developer.yahoo.com/yui/yuidoc/</a></li>
+    </ul>
+    <h4>
+        Requirements</h4>
+    <ul>
+        <li>This application needs live internet connection.</li>
+        <li>You need to have an existing twitter account. (Note to Examiners: I emailed my 
+            twitter account details to my teacher &quot;Stijn Dekeyser&quot;. If you don&#39;t have an 
+            existing twitter account and don&#39;t want to create new one then you can get my 
+            account from Mr-Dekeyser. Please don&#39;t share with other. </li>
+    </ul>
+    <h4>
+        Resolution</h4>
+    <p>
+        This application is tested under default resolution (normal screens : <strong>
+        470dp x 320dp</strong>). According to
+        <a href="http://developer.android.com/guide/practices/screens_support.html">
+        Android developer page</a>, there are four standard resolutions. The doc 
+        mentioned that there are serveal android devices that don&#39;t follow those 
+        standard resolutions as well. However, the requirement of this assignment is to 
+        support at least one resolution so I didn&#39;t test my application with differnet 
+        resolution. I make sure that the position and layout looks okay in default 
+        resolution. I don&#39;t add unecessary scrollbars as well.</p>
+    <h4>
+        How to login and view the existing</h4>
+    <ul>
+        <li><p>Click on &quot;Add your twitter account&quot;</p>
+        <img src="./images/login_screen.png" />
+        </li>
+        <li><p>The program will call twitter REST API to do the authentication. It will take a few seconds based on your connection and the status of twitter REST API. Note: If it doesn't show anything for long period, please do check the debug information on Titanium Console. Please make sure that you are able to access the internet from your virtual machine and the Twitter API is live. You can check the twitter status from those links ( <a href="http://dev.twitter.com/status/">dev.twitter.com/status</a> and <a href="http://status.twitter.com/">status.twitter.com</a>). As I mentioned, I didn't do any error handling since it's not the part of requirement for this assignment. </p>
+        <img src="./images/loading_screen.png" />
+        </li>
+        <li><p>You will see this screen. Note that the scren might be a bit different if you login the twitter website before.</p>
+        <img src="./images/twitter_login_without_signin.png" />
+        </li>
+        <li><p>Scroll down and enter your twitter user name and password. After that, please click on "Authorize App" button. Note that the Titanium Web View doesn't work really well on emulator (I don't have Andriod phone so I can't test it.) Please make sure that you have entered the correct user name and password and hit the button.</p>
+        <img src="./images/twitter_login_without_signin_us_pwd.png" />
+        </li>
+        <li><p>It will ask whether you want to let the browser to remember your password. You can choose any button to click based on your preference. </p>
+        <img src="./images/twitter_login_confirm.png" />
+        </li>
+        <li><p>Please wait for a while until you see this screen. The program will automatically read the pin. You don't need to do anything. </p>
+        <img src="./images/pin_page.png" />
+        </li>
+        <li><p>Please wait until you see this screen. The program is loading your twitter feed.</p>
+        <img src="./images/loading_tweet.png" />
+        </li>
+        <li><p>Finally, you will see this screen.</p>
+        <img src="./images/twitter_view.png" />
+        <p> Note: If your tweet is so long then you won't be able to see the completed text on the screen. I tried positing the text and alignment but using height:'auto' in one control and specific height in another control doesn't work well in Titanium.</p>
+        <p> Another thing to note is that the access token, secret and pin will be saved in isoloated storage so you won't need to login again when you open the application next time.If you want to delete the saved information, plesae refer to 
+            &quot;How to clean Isolated storage&quot; section.</p>
+        </li>
+    </ul>
+   
+    <h4>
+        How to logout
+    </h4>
+    <ul>
+        <li>This is very simple. You can just click on &quot;Log out&quot; button in twitter view 
+            window. But you will need to be in twitter view (a.k.a main window) in order to 
+            log out. When you do logout, the saved information such as access_token will be 
+            erased.</li>
+    </ul>
+
+
+
+    <h4>
+        How to revote the permission
+    </h4>
+    <p>
+        Once you authorized the application to access your twitter account, you can 
+        revoke the permission at anytime. There are serveal different ways to revoke the 
+        access but I recommend you to follow the following steps to revoke the access of 
+        the application that you&#39;ve authorized.</p>
+    <ol>
+        <li>Go to <a href="http://twitter.com/">twitter website</a> </li>
+        <li>Click on User Name -&gt; Settings at the right corner of twitter site. <br />
+           <img src="./images/twitter_setting.png" />
+        </li>
+        <li>Go to &quot;Applications&quot; tab in &quot;Settings&quot; page <br />
+        <img src="./images/twitter_apptab.png" />
+        </li>
+        <li>Find your &quot;USQTwit&quot; </li>
+        <li>Click on &quot;Revoke Access&quot; button<br />
+        <img src="./images/twitter_app_revoke.png" />
+        </li>
+    </ol>
+    <h4>
+        How to clean the Isolated storage
+    </h4>
+    <ul>
+        <li><p>Click on &quot;<strong>Home</strong>&quot; button and then &quot;<strong>Menu</strong>&quot; button on Emulator. Click on &#39;<strong>Setting&#39;</strong></p>
+        <img src="./images/setting-home.png"
+        </li>
+        <li><p>Select &quot;Application&quot;</p>
+        <img src="./images/setting-application.png"
+        </li>
+        <li><p>Select &quot;Manage applications&quot;</p>
+        <img src="./images/setting-manage-apps.png"
+        </li>
+        <li><p>Scroll down until you see &quot;USQTweet&quot;</p>
+        <img src="./images/setting-usqtweet.png"
+        </li>
+        <li><p>Click on &quot;Clear data&quot;</p>
+        <img src="./images/setting-clear-data.png"
+        </li>
+    </ul>
+    <h4>
+        Known issues</h4>
+    <ul>
+        <li>If there is some errors in connection or etc, the application won&#39;t let the 
+            users know about the problem. You will have to check the debug log in Titanium 
+            Console manully and will need to restart the application. </li>
+        <li>If you close the web view popup, there is no way to re-open it so you will have 
+            to re-run the application. </li>
+        <li>WebView is just a small browser in application but it&#39;s not so easy to nevigate 
+            so it&#39;s better not to click other links. </li>
+        <li>Additional to #1, there is no global exception handling. 5. </li>
+        <li>The application will store the access token once you authorized the application. 
+            So, it will not ask you to enter username/pwd or authorize again later. But the 
+            problem is that when you revoke the access from twitter site but you will have 
+            the access token that you have saved earlier in device then you will get the 
+            error. You need to clear the application data. </li>
+        <li>access token should not be stored in plain format. </li>
+        <li>If your tweet is so long then you won&#39;t be able to see the completed text on the 
+            screen. I tried positing the text and alignment but using height:&#39;auto&#39; in one 
+            control and specific height in another control doesn&#39;t work well in Titanium.</li>
+        <li>You won&#39;t be able to post anything to twitter as well. I posted about this
+            <a href="http://stackoverflow.com/questions/7944759/posting-new-status-to-twitter-from-android-emulator-is-giving-me-error">
+            in forum</a> but I haven&#39;t recieved any reply on this yet. I also nformed about 
+            this to my lecture. The one of the requirements for this assignmnet is to show 
+            how to use Network Api and I used it successfully three times in authentication 
+            and retriveing the home timeline feed.</li>
+    </ul>
+    <h4>
+        Reference ~</h4>
+    <ul>
+        <li>Using OAuth 1.0a (<a href="https://dev.twitter.com/docs/auth/oauth">https://dev.twitter.com/docs/auth/oauth</a>)</li>
+        <li>Twitter REST API (<a href="https://dev.twitter.com/docs/api">https://dev.twitter.com/docs/api</a>)</li>
+        <li>John Kristian&#39;s Javascript Library (<a 
+                href="http://oauth.googlecode.com/svn/code/javascript/">http://oauth.googlecode.com/svn/code/javascript/</a>) 
+            Note: I&#39;m using sha1.js and oauth.js from his library. </li>
+        <li>oauth-adapter (<a href="http://code.google.com/p/oauth-adapter/">http://code.google.com/p/oauth-adapter/</a>) 
+            Note: I didn&#39;t use this library but I looked at the code to understand how 
+            things works. </li>
+    </ul>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+
+</body>
+</html>
